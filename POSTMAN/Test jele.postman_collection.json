@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "fb3f97b7-34da-47b5-9ce2-49c225501977",
+		"name": "Test jele",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39827897"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/register?email=138@gmail.com&password=123456&gender=F",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "138@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "gender",
+							"value": "F"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Запрос:\n\nemail, password, gender\n\ngender => \\['M', 'F'\\]\n\nОтвет:\n\n**201 Пользователь зарегистрирован успешно**\n\n**400 Ошибка валидации**"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/login?email=138@gmail.com&password=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "138@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						}
+					]
+				},
+				"description": "Запрос:\n\nemail, password\n\nОтвет:\n\n**201 Успешный вход**\n\n**400 Неверные данные**"
+			},
+			"response": []
+		},
+		{
+			"name": "Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDg3YzdlMWQ3OGZiNzc5YzFlMDMzYWU3M2NmMTUzMmQwZmE5Y2JhMmEyOTgwMjBjNzdmN2Q5MDkzN2Q2YjMwZDk4YTMwYmU5ZWNkZmM0ODUiLCJpYXQiOjE3MzIwMTY0OTMuMjg4NTUxLCJuYmYiOjE3MzIwMTY0OTMuMjg4NTUzLCJleHAiOjE3NjM1NTI0OTMuMjQ1MTAxLCJzdWIiOiIxNSIsInNjb3BlcyI6W119.fs5my3P5b9Hl4GP3_iVnCQU5208ShaGxCyNLW7HxlZPilI3_yfUG-S0Ed4NA3twqfTkTLrElN4U0ynSujY41R-5u3E0czAAZ2VNdlVU21H5qDPltFHUPHB4bigWqBsrbWMBIVoFm_ady-QMTlfNjfH-zWrp6eEVoa6wBYvahaiLaZLuBXQXCxRGuTQBaLoWM0OKiTZtU-QKOIJspl8PgQCVpcHprwroF_0HIpQMGijfCvqE6shBkS2xwOx6Lg6XldlGaouN_j08xpo1xQ5hBIWcyBPGnvSQrbNiGELVSASHUShvwKFTGwcePtRUDjr7vMt-3KdN_juFg4honWkbix_10GEouqpB9C10ZIwN3XP9egwQ8lyCnQyTDWLq6PCPQ6ZDoTF5dhL_fXBc1DC6RKo998NnWBn6bBsOr2d-XlhjraSNjcJlXGaJq2QhljSX89N0K75XRj1d37_poAgH-LitepG48zEe6E_5exe2qW6zzQ7c7VlWzIM4tVgPBpGBzOeihBNKT02eIYvsxnNLbudrzREayZikE4DLm5jnw8YROQ7R22xpUuj8udEAbu7tzY8nRCYWW1uTgfEPk-jAmrOHffDtxcLoEkCI20YWvoFYO_Aj2ojlVDBOOh09aa15y_IR8P9SpKdr0yZlOJQ-kqL2bBXeP0drWkyYsxinhkxM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile"
+					]
+				},
+				"description": "Запрос:\n\nToken\n\nОтвет:\n\n\"id\", \"email\", \"gender\" : JSON"
+			},
+			"response": []
+		}
+	]
+}

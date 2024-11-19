@@ -12,24 +12,30 @@ use Validator;
 class RegisterController extends Controller
 {
     public function register(Request $request){
-        $v = Validator::make($request->all(), [
-            'email' => 'email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
-            'gender' => ['required', new Gender]
-        ]);
-
-        if($v->fails()) return response($v->errors(), 400);
-
-        $data = $request->all();
-        $data['password'] = bcrypt($data['password']);
-        $user = User::create($data);
+        try{
+            $v = Validator::make($request->all(), [
+                'email' => 'email',
+                'password' => 'required',
+                'gender' => ['required', new Gender]
+            ]);
+    
+            if($v->fails()) return response($v->errors(), 400);
+    
+            $data = $request->all();
+            $data['password'] = bcrypt($data['password']);
+            $user = User::create($data);
+            
+            $s = [];
+            $s['token'] = $user->createToken('api')->accessToken;
+            $s['email'] = $user->email;
+    
+    
+            return response(["Пользователь зарегистрирован", $s], 201);
+        }
+        catch(Exception $e){
+            return response($e, 400);
+        }
         
-        $s = [];
-        $s['token'] = $user->createToken('api')->accessToken;
-        $s['email'] = $user->email;
-
-        return response(["Пользователь зарегистрирован", $s], 201);
     }
 
     public function login(Request $request)
@@ -51,7 +57,11 @@ class RegisterController extends Controller
     }
 
     public function profile(Request $request){
-        return response($request->user());
-
+        try{
+            return response($request->user());
+        }
+        catch(Exception $e){
+            return $e;
+        }
     }
 }
