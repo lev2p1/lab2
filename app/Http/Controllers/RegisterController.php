@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Rules\Gender;
 use Exception;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
